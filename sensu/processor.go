@@ -49,7 +49,9 @@ func (p *processor) handleMessage(blob []byte) {
 	event, err := event.UnmarshalEvent(blob)
 
 	if err != nil {
-		log.Printf("unmarshal the event: %s", err.Error())
+		log.Printf("%s: unmarshal the event: %s", string(blob), err.Error())
+	} else {
+		log.Printf("Event received: %s", string(blob))
 	}
 
 	if err := p.handler.Handle(event); err != nil {
