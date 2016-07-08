@@ -3,8 +3,8 @@ package main
 import (
 	"log"
 
-	"github.com/upfluence/sensu-go/sensu/event"
-	"github.com/upfluence/sensu-go/sensu/transport/rabbitmq"
+	"github.com/upfluence/sensu-handler-go/Godeps/_workspace/src/github.com/upfluence/sensu-go/sensu/event"
+	"github.com/upfluence/sensu-handler-go/Godeps/_workspace/src/github.com/upfluence/sensu-go/sensu/transport/rabbitmq"
 	"github.com/upfluence/sensu-handler-go/sensu"
 	"github.com/upfluence/sensu-handler-go/sensu/handler"
 )
