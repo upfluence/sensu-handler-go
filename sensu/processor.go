@@ -1,11 +1,11 @@
 package sensu
 
 import (
-	"log"
 	"strconv"
 	"strings"
 	"time"
 
+	"github.com/upfluence/goutils/log"
 	"github.com/upfluence/sensu-go/sensu/event"
 	"github.com/upfluence/sensu-go/sensu/transport"
 	"github.com/upfluence/sensu-handler-go/sensu/handler"
@@ -29,14 +29,14 @@ func (p *processor) Start() error {
 	)
 
 	msgChan, stopChan := p.subscribe(funnel)
-	log.Printf("Subscribed to %s", p.name)
+	log.Noticef("Subscribed to %s", p.name)
 
 	for {
 		select {
 		case b := <-msgChan:
 			p.handleMessage(b)
 		case <-p.closeChan:
-			log.Printf("Gracefull stop of %s", p.name)
+			log.Warningf("Gracefull stop of %s", p.name)
 			stopChan <- true
 			return nil
 		}
@@ -49,13 +49,13 @@ func (p *processor) handleMessage(blob []byte) {
 	event, err := event.UnmarshalEvent(blob)
 
 	if err != nil {
-		log.Printf("%s: unmarshal the event: %s", string(blob), err.Error())
+		log.Errorf("%s: unmarshal the event: %s", string(blob), err.Error())
 	} else {
-		log.Printf("Event received: %s", string(blob))
+		log.Infof("Event received: %s", string(blob))
 	}
 
 	if err := p.handler.Handle(event); err != nil {
-		log.Printf("%s: %s", p.name, err.Error())
+		log.Errorf("%s: %s", p.name, err.Error())
 	}
 }
 

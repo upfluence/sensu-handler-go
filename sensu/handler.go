@@ -1,18 +1,18 @@
 package sensu
 
 import (
-	"log"
 	"os"
 	"os/signal"
 	"time"
 
+	"github.com/upfluence/goutils/log"
 	"github.com/upfluence/sensu-go/sensu/transport"
 	"github.com/upfluence/sensu-handler-go/sensu/handler"
 )
 
 const (
 	connectionTimeout = 5 * time.Second
-	currentVersion    = "0.0.1"
+	currentVersion    = "0.1.0"
 )
 
 type Handler struct {
@@ -52,7 +52,7 @@ func (h *Handler) Start() error {
 
 		select {
 		case s := <-sig:
-			log.Printf("Signal %s received", s.String())
+			log.Noticef("Signal %s received", s.String())
 
 			for _, processor := range h.processors {
 				processor.Close()
@@ -60,7 +60,7 @@ func (h *Handler) Start() error {
 
 			return h.transport.Close()
 		case <-h.transport.GetClosingChan():
-			log.Println("transport disconnected")
+			log.Warning("transport disconnected")
 
 			for _, processor := range h.processors {
 				processor.Close()
