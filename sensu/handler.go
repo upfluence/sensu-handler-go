@@ -5,8 +5,8 @@ import (
 	"os/signal"
 	"time"
 
-	"github.com/upfluence/sensu-handler-go/Godeps/_workspace/src/github.com/upfluence/goutils/log"
-	"github.com/upfluence/sensu-handler-go/Godeps/_workspace/src/github.com/upfluence/sensu-go/sensu/transport"
+	"github.com/upfluence/goutils/log"
+	"github.com/upfluence/sensu-go/sensu/transport"
 	"github.com/upfluence/sensu-handler-go/sensu/handler"
 )
 

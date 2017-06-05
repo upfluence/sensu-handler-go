@@ -1,0 +1,20 @@
+hash: aff0f0cd931629c7b10e22119c56bd1a5c1eeffad0584de5fa23fbf8eb04d6c0
+updated: 2017-06-05T14:41:10.941120815-04:00
+imports:
+- name: github.com/op/go-logging
+  version: 970db520ece77730c7e4724c61121037378659d9
+- name: github.com/streadway/amqp
+  version: b4f3ceab0337f013208d31348b578d83c0064744
+- name: github.com/upfluence/goutils
+  version: e8f7112ce74c2e02eca205f14415bab7e02f6c46
+  subpackages:
+  - log
+- name: github.com/upfluence/sensu-go
+  version: 99bf03626e3d1c9418969f60a697dc424387b618
+  subpackages:
+  - sensu/check
+  - sensu/client
+  - sensu/event
+  - sensu/transport
+  - sensu/transport/rabbitmq
+testImports: []
